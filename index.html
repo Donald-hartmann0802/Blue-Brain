@@ -1,47 +1,461 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blue Brain-AI | Your Personal AI Mentor</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #101827;
-            color: white;
-            text-align: center;
-            padding: 60px 20px;
-        }
-        h1 {
-            color: #62c6ff;
-            font-size: 42px;
-        }
-        p {
-            font-size: 18px;
-            line-height: 1.6;
-        }
-        .roles {
-            margin: 35px auto;
-            max-width: 600px;
-            line-height: 2;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Blue Brain-AI is your personal AI Mentor for learning, personal growth, everyday tasks, problem solving and business.">
+  <title>Blue Brain-AI | Your Personal AI Mentor</title>
+
+  <style>
+    :root {
+      --navy: #10243e;
+      --blue: #2563eb;
+      --light-blue: #eff6ff;
+      --text: #243247;
+      --muted: #64748b;
+      --white: #ffffff;
+      --border: #e2e8f0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--white);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(1120px, 90%);
+      margin: auto;
+    }
+
+    /* Navigation */
+
+    header {
+      background: white;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 23px;
+      font-weight: 800;
+      color: var(--navy);
+    }
+
+    .logo span {
+      color: var(--blue);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .nav-links a:hover {
+      color: var(--blue);
+    }
+
+    .button {
+      display: inline-block;
+      background: var(--blue);
+      color: white;
+      padding: 13px 23px;
+      border-radius: 9px;
+      font-weight: 700;
+      transition: 0.2s;
+    }
+
+    .button:hover {
+      background: #1d4ed8;
+      transform: translateY(-2px);
+    }
+
+    /* Hero */
+
+    .hero {
+      background: linear-gradient(135deg, #f8fbff, #eaf2ff);
+      padding: 95px 0;
+      text-align: center;
+    }
+
+    .eyebrow {
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      color: var(--navy);
+      font-size: clamp(38px, 6vw, 64px);
+      line-height: 1.12;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 span {
+      color: var(--blue);
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 19px;
+      max-width: 680px;
+      margin: 0 auto 30px;
+    }
+
+    .hero-note {
+      margin-top: 18px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* Sections */
+
+    section {
+      padding: 80px 0;
+    }
+
+    .section-heading {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 45px;
+    }
+
+    .section-heading h2 {
+      color: var(--navy);
+      font-size: 34px;
+      margin-bottom: 12px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+    }
+
+    /* Role cards */
+
+    .roles {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .role-card {
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      padding: 27px;
+      background: white;
+      transition: 0.2s;
+    }
+
+    .role-card:hover {
+      transform: translateY(-5px);
+      border-color: #93c5fd;
+      box-shadow: 0 12px 30px rgba(15, 40, 80, 0.08);
+    }
+
+    .role-icon {
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+
+    .role-card h3 {
+      color: var(--navy);
+      font-size: 19px;
+      margin-bottom: 9px;
+    }
+
+    .role-card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* About */
+
+    .about {
+      background: #f8fafc;
+    }
+
+    .about-content {
+      max-width: 760px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .about-content h2 {
+      color: var(--navy);
+      font-size: 34px;
+      margin-bottom: 18px;
+    }
+
+    .about-content p {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    /* Call to action */
+
+    .cta {
+      text-align: center;
+      background: var(--navy);
+      color: white;
+      padding: 70px 25px;
+      border-radius: 18px;
+    }
+
+    .cta h2 {
+      font-size: 32px;
+      margin-bottom: 15px;
+    }
+
+    .cta p {
+      color: #cbd5e1;
+      margin-bottom: 25px;
+    }
+
+    .cta .button {
+      background: white;
+      color: var(--navy);
+    }
+
+    /* Footer */
+
+    footer {
+      background: #0b1729;
+      color: #cbd5e1;
+      padding: 30px 0;
+      text-align: center;
+      font-size: 13px;
+      margin-top: 80px;
+    }
+
+    footer strong {
+      color: white;
+    }
+
+    /* Mobile */
+
+    @media (max-width: 760px) {
+      .nav-links {
+        gap: 12px;
+        font-size: 12px;
+      }
+
+      .nav-links .button {
+        padding: 9px 12px;
+      }
+
+      .roles {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 70px 0;
+      }
+
+      section {
+        padding: 60px 0;
+      }
+    }
+
+    @media (max-width: 420px) {
+      nav {
+        flex-direction: column;
+        padding: 15px 0;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <h1>Blue Brain-AI 🧠</h1>
-    <h2>Your Personal AI Mentor</h2>
 
-    <p>Learn, grow, solve problems, and build a better future.</p>
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#" class="logo">Blue Brain<span>-AI</span> 🧠</a>
 
-    <div class="roles">
-        <h2>Meet Your Five AI Roles</h2>
-        <p>📚 Teacher</p>
-        <p>🎯 Personal Coach</p>
-        <p>📅 Everyday Assistant</p>
-        <p>💡 Problem Solver</p>
-        <p>💼 Business Advisor</p>
+        <div class="nav-links">
+          <a href="#home">Home</a>
+          <a href="#roles">Our AI Roles</a>
+          <a href="#about">About</a>
+          <a href="#roles" class="button">Explore</a>
+        </div>
+      </nav>
     </div>
+  </header>
 
-    <p>Think clearly. Learn continuously. Make progress.</p>
+  <main>
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="eyebrow">Your Personal AI Mentor</div>
+
+        <h1>
+          Think Clearly.<br>
+          Learn Smarter.<br>
+          <span>Grow Further.</span>
+        </h1>
+
+        <p>
+          Meet Blue Brain-AI — your personal AI Mentor
+          designed to help you learn, grow, solve problems,
+          organize your life and explore new opportunities.
+        </p>
+
+        <a href="#roles" class="button">Discover Your AI Mentor →</a>
+
+        <div class="hero-note">
+          Built to make artificial intelligence useful and understandable for everyone.
+        </div>
+      </div>
+    </section>
+
+    <section id="roles">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="eyebrow">One Mentor. Five Roles.</div>
+          <h2>How Can Blue Brain-AI Help You?</h2>
+          <p>
+            Five helpful roles designed to support different
+            parts of your personal and professional life.
+          </p>
+        </div>
+
+        <div class="roles">
+
+          <article class="role-card">
+            <div class="role-icon">📚</div>
+            <h3>AI Teacher</h3>
+            <p>
+              Learn new subjects through simple explanations,
+              practical examples and step-by-step lessons.
+            </p>
+          </article>
+
+          <article class="role-card">
+            <div class="role-icon">🎯</div>
+            <h3>Personal Coach</h3>
+            <p>
+              Set meaningful goals, develop better habits,
+              build confidence and stay motivated.
+            </p>
+          </article>
+
+          <article class="role-card">
+            <div class="role-icon">📅</div>
+            <h3>Everyday Assistant</h3>
+            <p>
+              Organize your schedule, manage tasks,
+              prepare messages and simplify daily activities.
+            </p>
+          </article>
+
+          <article class="role-card">
+            <div class="role-icon">💡</div>
+            <h3>Problem Solver</h3>
+            <p>
+              Break difficult challenges into smaller steps,
+              compare options and explore practical solutions.
+            </p>
+          </article>
+
+          <article class="role-card">
+            <div class="role-icon">💼</div>
+            <h3>Business Advisor</h3>
+            <p>
+              Explore business ideas, understand customers,
+              plan projects and discover opportunities.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="container">
+        <div class="about-content">
+          <div class="eyebrow">Our Mission</div>
+          <h2>Artificial Intelligence for Everyone</h2>
+
+          <p>
+            Blue Brain-AI aims to make artificial intelligence
+            easier to understand, more practical to use,
+            and more valuable in everyday life.
+          </p>
+
+          <p>
+            Our vision is to create a friendly AI Mentor
+            that supports people in learning, personal growth,
+            problem solving and business development.
+          </p>
+
+          <p>
+            We believe in continuous learning,
+            clear thinking and meaningful progress.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="cta">
+          <h2>Your Next Step Starts Here</h2>
+          <p>
+            Explore the five roles and discover what
+            Blue Brain-AI is designed to help you achieve.
+          </p>
+          <a href="#roles" class="button">Explore the Five Roles →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <strong>Blue Brain-AI</strong> — Think clearly.
+      Learn continuously. Make progress.
+      <br><br>
+      © 2026 Blue Brain-AI. Project under development.
+    </div>
+  </footer>
+
 </body>
 </html>
